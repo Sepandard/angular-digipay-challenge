@@ -1,0 +1,38 @@
+@use 'src/assets/styles/common' as *;
+.nav {
+  display: flex;
+
+  justify-content: space-between;
+  align-items: center;
+  height: param(space-12);
+
+  padding: 0 param(space-8);
+  &-item {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    align-items: center;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 24px;
+    text-align: center;
+    text-transform: uppercase;
+    & > a {
+      @include link();
+      color: get-color(primary);
+    }
+
+  }
+  &-icon{
+    display: flex;
+    gap: param(space-5)
+  }
+}
+
+.circle {
+  display: inline-block;
+  width: param(space-4);
+  height: param(space-4);
+  background-color: get-color(primary);
+  border-radius: 100%;
+}

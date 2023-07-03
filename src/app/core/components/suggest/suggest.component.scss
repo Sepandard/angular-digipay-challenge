@@ -1,0 +1,17 @@
+@use 'src/assets/styles/common' as *;
+
+.suggest {
+  height: param(space-8);
+  background-color: get-color(primary);
+  color: get-color(secondary);
+  text-align: center;
+  font-family: 'Satoshi';
+  font-style: italic;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 19px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
