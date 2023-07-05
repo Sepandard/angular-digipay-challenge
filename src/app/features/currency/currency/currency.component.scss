@@ -1,0 +1,55 @@
+@use "src/assets/styles/common" as *;
+
+:host {
+  --table-font-size: 18px;
+}
+
+button {
+  background-color: transparent;
+  border: 0;
+  cursor: pointer;
+  border-radius: 4px;
+  padding: 5px;
+  &:hover {
+    background-color: #ccccccb1;
+  }
+  &:disabled {
+    cursor: auto;
+    background-color: #ccc;
+  }
+}
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: param(space-8) auto;
+  border-spacing: 0;
+  thead > tr > * {
+    font-weight: bold;
+    padding: param(space-4);
+    text-align: left;
+    font-size: var(--table-font-size);
+    border-top: 1 solid #ccc;
+  }
+
+  tbody > tr > * {
+    padding: param(space-4);
+    text-align: left;
+    font-size: var(--table-font-size);
+    border-top: 0.5px solid #ccc;
+  }
+}
+.active {
+  border: 1px solid get-color(primary) !important;
+}
+.asc {
+  color: #16c784 !important;
+}
+.desc {
+  color: #ea3943;
+}
+
+.pagination {
+  display: flex;
+  justify-content: space-between;
+  padding: param(space-4);
+}

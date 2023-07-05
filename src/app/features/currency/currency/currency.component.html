@@ -1,1 +1,97 @@
-<p>currency works!</p>
+<table class="table">
+  <thead>
+    <tr>
+      <th>
+        #
+        <button (click)="toggleSortDirection()">
+          <img
+            *ngIf="isAsc; else desc"
+            [ngSrc]="'assets/icon/up.svg'"
+            height="12"
+            width="12"
+          />
+          <ng-template #desc>
+            <img [ngSrc]="'assets/icon/down.svg'" height="12" width="12" />
+          </ng-template>
+        </button>
+      </th>
+      <th>
+        Name
+        <button
+          (click)="toggleSort('name')"
+          [ngClass]="{ active: enabledSort === 'name' }"
+        >
+          <img [ngSrc]="'assets/icon/filter.svg'" height="12" width="12" />
+        </button>
+      </th>
+      <th>Symbol</th>
+      <th>Price</th>
+      <th>24% h</th>
+      <th>
+        market cap
+        <button
+          (click)="toggleSort('market_cap')"
+          [ngClass]="{ active: enabledSort === 'market_cap' }"
+        >
+          <img [ngSrc]="'assets/icon/filter.svg'" height="12" width="12" />
+        </button>
+      </th>
+      <th>
+        Circulating supply
+        <button
+          (click)="toggleSort('circulating_supply')"
+          [ngClass]="{ active: enabledSort === 'circulating_supply' }"
+        >
+          <img [ngSrc]="'assets/icon/filter.svg'" height="12" width="12" />
+        </button>
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <ng-container *ngIf="!loading; else loadingTemplate">
+      <ng-container *ngIf="data.length > 0; else noData">
+        <tr *ngFor="let item of data; let i = index">
+          <td>{{ i + this.pagination.start + 1  }}</td>
+          <td>{{ item.name }}</td>
+          <td>{{ item.symbol }}</td>
+          <td>{{ item.quote["USD"].price | number }} USD</td>
+          <td
+            class="desc"
+            [ngClass]="{ asc: item.quote['USD'].percent_change_24h >= 0 }"
+          >
+            {{ item.quote["USD"].percent_change_24h }}%
+            <img
+              *ngIf="item.quote['USD'].percent_change_24h > 0; else desc"
+              [ngSrc]="'assets/icon/up.svg'"
+              height="12"
+              width="12"
+            />
+            <ng-template #desc>
+              <img [ngSrc]="'assets/icon/down.svg'" height="12" width="12" />
+            </ng-template>
+          </td>
+          <td>{{ item.quote["USD"].market_cap | number }}</td>
+          <td>{{ item.circulating_supply | number }}</td>
+        </tr>
+      </ng-container>
+      <ng-template #noData> <p>No data existed...</p></ng-template>
+    </ng-container>
+    <ng-template #loadingTemplate><p>loading...</p></ng-template>
+  </tbody>
+</table>
+
+  <div class="pagination">
+    <button
+      (click)="handlePagination(pagination.pageIndex - 1)"
+      [disabled]="pagination.pageIndex === 0"
+    >
+      <img [ngSrc]="'assets/icon/back.svg'" height="12" width="12" />
+    </button>
+    Page {{ pagination.pageIndex + 1 }}
+    <button
+      (click)="handlePagination(pagination.pageIndex + 1)"
+      [disabled]="totalCount / 100 < pagination.pageIndex + 1"
+    >
+      <img [ngSrc]="'assets/icon/next.svg'" height="12" width="12" />
+    </button>
+  </div>
