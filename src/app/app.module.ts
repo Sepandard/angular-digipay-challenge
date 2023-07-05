@@ -11,7 +11,7 @@ import { NotFoundComponent } from './features/not-found/not-found.component';
   declarations: [AppComponent, NotFoundComponent],
   imports: [
     BrowserModule,
-    CoreModule.forRoot({ ApiKey: 'd4573dbe-9d08-47ef-ad1b-2c8236373a2e' }),
+    CoreModule,
     RouterModule.forRoot(appRoutes, { initialNavigation: 'enabledBlocking' }),
   ],
   providers: [],
