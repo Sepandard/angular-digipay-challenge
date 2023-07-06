@@ -1,3 +1,4 @@
+{{ message }}
 <table class="table">
   <thead>
     <tr>
@@ -51,7 +52,7 @@
     <ng-container *ngIf="!loading; else loadingTemplate">
       <ng-container *ngIf="data.length > 0; else noData">
         <tr *ngFor="let item of data; let i = index">
-          <td>{{ i + this.pagination.start + 1  }}</td>
+          <td>{{ i + this.pagination.start + 1 }}</td>
           <td>{{ item.name }}</td>
           <td>{{ item.symbol }}</td>
           <td>{{ item.quote["USD"].price | number }} USD</td>
@@ -80,18 +81,18 @@
   </tbody>
 </table>
 
-  <div class="pagination">
-    <button
-      (click)="handlePagination(pagination.pageIndex - 1)"
-      [disabled]="pagination.pageIndex === 0"
-    >
-      <img [ngSrc]="'assets/icon/back.svg'" height="12" width="12" />
-    </button>
-    Page {{ pagination.pageIndex + 1 }}
-    <button
-      (click)="handlePagination(pagination.pageIndex + 1)"
-      [disabled]="totalCount / 100 < pagination.pageIndex + 1"
-    >
-      <img [ngSrc]="'assets/icon/next.svg'" height="12" width="12" />
-    </button>
-  </div>
+<div class="pagination">
+  <button
+    (click)="handlePagination(pagination.pageIndex - 1)"
+    [disabled]="pagination.pageIndex === 0"
+  >
+    <img [ngSrc]="'assets/icon/back.svg'" height="12" width="12" />
+  </button>
+  Page {{ pagination.pageIndex + 1 }}
+  <button
+    (click)="handlePagination(pagination.pageIndex + 1)"
+    [disabled]="totalCount / 100 < pagination.pageIndex + 1"
+  >
+    <img [ngSrc]="'assets/icon/next.svg'" height="12" width="12" />
+  </button>
+</div>

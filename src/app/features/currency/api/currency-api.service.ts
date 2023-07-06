@@ -8,9 +8,9 @@ import { DigiHttpResponse } from '@app/core/types/response.type';
 export class CurrencyApiService {
   constructor(private http: HttpClient) {}
 
-  public getData(param: any) {
+  public getDataList(param: any) {
     return this.http.get<DigiHttpResponse<Cryptocurrency>>(
-      CurrencyEndpoint.ticker,
+      CurrencyEndpoint.listings,
       {
         params: new HttpParams({
           fromObject: {
@@ -19,5 +19,7 @@ export class CurrencyApiService {
         }),
       }
     );
-  }
+  }  
+  
+
 }
